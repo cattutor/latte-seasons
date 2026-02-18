@@ -1,0 +1,145 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>라떼의 계절 - 프로토타입</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="prologueOverlay" class="prologue-overlay" aria-live="polite">
+    <div class="prologue-panel">
+      <h2>PROLOGUE</h2>
+      <p id="prologueText"></p>
+      <button id="prologueNextBtn">다음</button>
+    </div>
+  </div>
+
+  <div id="minigameOverlay" class="minigame-overlay" hidden>
+    <div class="minigame-panel">
+      <h3 id="minigameTitle">MINIGAME</h3>
+      <p id="minigameDesc"></p>
+      <div id="minigameBody" class="minigame-body"></div>
+      <div class="minigame-actions">
+        <button id="minigameCancelBtn" class="small">취소</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="endingOverlay" class="ending-overlay" hidden>
+    <div class="ending-panel">
+      <h2 id="endingTitle">ENDING</h2>
+      <p id="endingText"></p>
+      <div id="creditsRoll" class="credits-roll"></div>
+      <button id="endingRestartBtn" class="small">처음으로</button>
+    </div>
+  </div>
+  <div id="cgOverlay" class="cg-overlay hidden" aria-hidden="true">
+    <img id="cgImage" alt="엔딩 CG" />
+  </div>
+
+  <div id="app">
+    <main class="game-shell">
+      <section class="main-area card">
+        <div class="meta-row">
+          <span id="chapterLabel">Chapter 1 - 붕괴</span>
+          <span id="dayLabel">D-28</span>
+          <span id="timeLabel">새벽 05:00</span>
+        </div>
+
+        <div id="stageScene" class="stage-scene stage-hospital">
+          <div id="sceneBg" class="scene-bg"></div>
+          <div id="latteCard" class="latte-card">
+            <img id="latteSprite" class="latte-sprite cat-sprite" alt="라떼 스프라이트" hidden />
+            <canvas id="catCanvas" class="cat-canvas" width="320" height="320" role="img" aria-label="라떼"></canvas>
+            <div id="beeSuit" class="acc acc-bee" hidden>
+              <span class="wing left"></span>
+              <span class="wing right"></span>
+              <span class="collar"></span>
+              <span class="stripe s1"></span>
+              <span class="stripe s2"></span>
+            </div>
+            <div id="cakeProp" class="acc acc-cake" hidden>
+              <span class="cake-top"></span>
+              <span class="candle c1"></span>
+              <span class="candle c2"></span>
+              <span class="candle c3"></span>
+            </div>
+            <div id="bookProp" class="acc acc-book" hidden>BOOK PILLOW</div>
+          </div>
+          <img id="emoteEffect" class="emote-effect hidden" alt="감정 이모트" />
+          <div id="backgroundCue" class="background-cue">창밖의 계절</div>
+        </div>
+
+        <p id="sceneText" class="scene-text"></p>
+
+        <div class="stats-container">
+          <div class="bar-wrap">
+            <span class="bar-icon" aria-label="체력">❤️</span>
+            <span class="bar-label">체력</span>
+            <div class="bar-outer"><div id="hpBar" class="bar-inner bar-hp"></div></div>
+            <span class="bar-value" id="hpValue">72</span>
+          </div>
+          <div class="bar-wrap">
+            <span class="bar-icon" aria-label="편안함">☁️</span>
+            <span class="bar-label">편안함</span>
+            <div class="bar-outer"><div id="comfortBar" class="bar-inner bar-comfort"></div></div>
+            <span class="bar-value" id="comfortValue">50</span>
+          </div>
+          <div class="bar-wrap">
+            <span class="bar-icon" aria-label="멘탈">⭐</span>
+            <span class="bar-label">멘탈</span>
+            <div class="bar-outer"><div id="sanityBar" class="bar-inner bar-sanity"></div></div>
+            <span class="bar-value" id="sanityValue">70</span>
+          </div>
+          <div class="bar-wrap">
+            <span class="bar-icon" aria-label="돈">💰</span>
+            <span class="bar-label">돈</span>
+            <div class="bar-outer"><div id="moneyBar" class="bar-inner bar-money"></div></div>
+            <span class="bar-value" id="moneyValue">40</span>
+          </div>
+          <div class="bar-wrap">
+            <span class="bar-icon" aria-label="관계">🎀</span>
+            <span class="bar-label">관계</span>
+            <div class="bar-outer"><div id="bondBar" class="bar-inner bar-bond"></div></div>
+            <span class="bar-value" id="bondValue">45</span>
+          </div>
+        </div>
+
+        <p id="statusHint" class="status-hint"></p>
+      </section>
+
+      <section class="side-area card">
+        <div class="log-panel">
+          <h2>간호 일지</h2>
+          <table class="log-table">
+            <thead>
+              <tr>
+                <th>날짜</th>
+                <th>시간</th>
+                <th>체력</th>
+                <th>편안함</th>
+                <th>섭취량</th>
+                <th>비고</th>
+              </tr>
+            </thead>
+            <tbody id="logBody"></tbody>
+          </table>
+        </div>
+
+        <div class="control-panel">
+          <div id="choiceContainer" class="choice-list"></div>
+          <div id="itemPanel" class="item-panel"></div>
+          <div class="actions-row">
+            <button id="audioToggleBtn" class="small">소리 끄기</button>
+            <button id="exportBtn" class="small">기록 내보내기(.txt)</button>
+            <button id="restartBtn" class="small">다시 시작</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
